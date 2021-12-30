@@ -1,0 +1,6 @@
+name: DnDCraftFishing
+version: '${project.version}'
+main: xyz.raitaki.DnDCraftFishing.Main
+api-version: 1.17
+commands:
+  raitest:
