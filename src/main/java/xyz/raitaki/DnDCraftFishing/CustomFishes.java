@@ -19,6 +19,7 @@ public class CustomFishes {
     private double maxweight            = 1;
     private double minweight            = 0;
     private Sound sound                 = Sound.ENTITY_BLAZE_HURT;
+    private FishRarity rarity           = FishRarity.Legendary;
 
     public void setFish(ItemStack fish){
         this.fish     = fish;
@@ -50,6 +51,10 @@ public class CustomFishes {
         this.sound = sound;
     }
 
+    public void setRarity(FishRarity rarity){
+        this.rarity = rarity;
+    }
+
     public void createItem(){
         this.fish.setItemMeta(fishmeta);
     }
@@ -69,4 +74,11 @@ public class CustomFishes {
     public Integer getChance(){
         return this.chance;
     }
+
+    public FishRarity getRarity(){
+        return this.rarity;
+    }
+
+    public enum FishRarity{Common, Rare, Legendary}
 }
+

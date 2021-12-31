@@ -12,7 +12,7 @@ public class Events implements Listener {
     public void CatchingFish(PlayerFishEvent event){
         if(Methods.isFished(event.getState())){
             event.getCaught().remove();
-            event.getPlayer().getInventory().addItem(Main.rc.next());
+            event.getPlayer().getInventory().addItem(Main.rc.nextEdited(20,15,3));
         }
     }
 }
