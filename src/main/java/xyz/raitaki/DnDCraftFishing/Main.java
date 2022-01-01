@@ -13,7 +13,12 @@ import java.util.ArrayList;
 
 public final class Main extends JavaPlugin {
 
-    public static RandomCollection rc = new RandomCollection();
+    public static ArrayList<CustomFishes> fishList   = new ArrayList<>();
+    public static ArrayList<String> qualityList      = new ArrayList<>();
+    public static ArrayList<CustomRod> rodList       = new ArrayList<>();
+    public static RandomCollection rc                = new RandomCollection();
+
+
     private static Main instance;
     public static Main getInstance() {return instance;}
     private void registerCommands(String[] cmds, CommandExecutor cmdExecutor)
@@ -50,7 +55,6 @@ public final class Main extends JavaPlugin {
         fishes.setCustommodeldata(0);
         fishes.setLore(string);
         fishes.setName("test1");
-        fishes.setSound(Sound.ENTITY_WITHER_AMBIENT);
         fishes.setWeights(12,5);
         fishes.createItem();
 
@@ -64,7 +68,6 @@ public final class Main extends JavaPlugin {
         fishes2.setCustommodeldata(0);
         fishes2.setLore(string2);
         fishes2.setName("test2");
-        fishes2.setSound(Sound.ENTITY_WITHER_AMBIENT);
         fishes2.setWeights(12,5);
         fishes2.createItem();
 
@@ -78,7 +81,6 @@ public final class Main extends JavaPlugin {
         fishes3.setCustommodeldata(0);
         fishes3.setLore(string3);
         fishes3.setName("test3");
-        fishes3.setSound(Sound.ENTITY_WITHER_AMBIENT);
         fishes3.setWeights(12,5);
         fishes3.createItem();
 
@@ -92,7 +94,6 @@ public final class Main extends JavaPlugin {
         fishes4.setCustommodeldata(0);
         fishes4.setLore(string4);
         fishes4.setName("test4");
-        fishes.setSound(Sound.ENTITY_WITHER_AMBIENT);
         fishes4.setWeights(12,5);
         fishes4.createItem();
 
@@ -100,5 +101,14 @@ public final class Main extends JavaPlugin {
         rc.add(fishes2);
         rc.add(fishes3);
         rc.add(fishes4);
+
+        fishList.add(fishes);
+        fishList.add(fishes2);
+        fishList.add(fishes3);
+        fishList.add(fishes4);
+
+        qualityList.add("quality1");
+        qualityList.add("quality2");
+        qualityList.add("quality3");
     }
 }

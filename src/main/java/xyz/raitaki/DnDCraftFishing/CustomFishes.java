@@ -16,9 +16,8 @@ public class CustomFishes {
     private String name                 = "Default fish name";
     private ArrayList<String> lore      = new ArrayList<>();
     private Integer chance              = 100;
-    private double maxweight            = 1;
-    private double minweight            = 0;
-    private Sound sound                 = Sound.ENTITY_BLAZE_HURT;
+    private Integer maxweight           = 1;
+    private Integer minweight           = 0;
     private FishRarity rarity           = FishRarity.Legendary;
 
     public void setFish(ItemStack fish){
@@ -38,17 +37,13 @@ public class CustomFishes {
         this.chance = chance;
     }
 
-    public void setWeights(double maxweight, double minweight){
+    public void setWeights(Integer maxweight, Integer minweight){
         this.maxweight = maxweight;
         this.minweight = minweight;
     }
 
     public void setCustommodeldata(Integer data){
         this.fishmeta.setCustomModelData(data);
-    }
-
-    public void setSound(Sound sound){
-        this.sound = sound;
     }
 
     public void setRarity(FishRarity rarity){
@@ -63,11 +58,11 @@ public class CustomFishes {
         return this.fish;
     }
 
-    public Double getMaxWeight(){
+    public Integer getMaxWeight(){
         return this.maxweight;
     }
 
-    public Double getMinWeight(){
+    public Integer getMinWeight(){
         return this.minweight;
     }
 
