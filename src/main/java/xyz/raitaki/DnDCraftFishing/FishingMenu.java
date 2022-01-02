@@ -11,6 +11,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class FishingMenu implements Listener {
@@ -28,10 +29,23 @@ public class FishingMenu implements Listener {
     private int orangebari   = 31; // 31
     private int yellowbari   = 22; // 22
     private int greenbari    = 13; // 13
-    private int greenbutton  = 25;
-    private int redbutton    = 19;
+    private ItemStack greenbutton      = new ItemStack(Material.LIME_STAINED_GLASS_PANE);
+    private ItemStack redbutton        = new ItemStack(Material.RED_STAINED_GLASS_PANE);
+    private int greenbuttoni  = 25;
+    private int redbuttoni    = 19;
     private boolean stopped = false;
     private String inventoryname = "§6Fishing";
+
+    private void setItemNames(){
+        changeItemName(greenbutton, "§aCatch a fish");
+        changeItemName(redbutton, "§4Stop fishing");
+    }
+
+    private void changeItemName(ItemStack item, String name){
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.displayName(Component.text(name));
+        item.setItemMeta(itemMeta);
+    }
 
     public void setPlayer(Player p){
         this.p = p;
@@ -40,9 +54,10 @@ public class FishingMenu implements Listener {
     public void start(){
         inventory = Bukkit.createInventory(null, 54, Component.text(inventoryname));
         createInventoryItems();
+        setItemNames();
         p.openInventory(inventory);
-        inventory.setItem(greenbutton, greenbar);
-        inventory.setItem(redbutton, redbar);
+        inventory.setItem(greenbuttoni, greenbutton);
+        inventory.setItem(redbuttoni, redbutton);
         new BukkitRunnable(){
             boolean shouldup = true;
             public void run() {
@@ -121,12 +136,11 @@ public class FishingMenu implements Listener {
     public void eventchecker(InventoryClickEvent event) {
         if(event.getView().title() == p.getOpenInventory().title() && event.getWhoClicked() == p){
             if(state < 3){
-                p.sendMessage(String.valueOf(state));
                 event.setCancelled(true);
                 event.getWhoClicked().closeInventory();
                 return;
             }
-            if(event.getSlot() == greenbutton && state >= 3){
+            if(event.getSlot() == greenbuttoni && state >= 3){
                 ItemStack fish = getFish();
                 HumanEntity p = event.getWhoClicked();
                 if(p.getInventory().isEmpty()){
@@ -137,7 +151,7 @@ public class FishingMenu implements Listener {
                 p.closeInventory();
                 stopped = true;
             }
-            if(event.getSlot() == redbutton){
+            if(event.getSlot() == redbuttoni){
                 p.closeInventory();
                 stopped = true;
             }
