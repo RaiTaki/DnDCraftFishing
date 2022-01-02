@@ -1,6 +1,5 @@
 package xyz.raitaki.DnDCraftFishing;
 
-import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.NavigableMap;

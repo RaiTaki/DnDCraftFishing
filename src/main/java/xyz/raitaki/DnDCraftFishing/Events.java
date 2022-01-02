@@ -6,11 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerFishEvent;
-import org.bukkit.inventory.ItemStack;
-
-import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Events implements Listener {
 

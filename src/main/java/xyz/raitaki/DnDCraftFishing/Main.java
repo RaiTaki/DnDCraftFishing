@@ -2,16 +2,9 @@ package xyz.raitaki.DnDCraftFishing;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public final class Main extends JavaPlugin {
