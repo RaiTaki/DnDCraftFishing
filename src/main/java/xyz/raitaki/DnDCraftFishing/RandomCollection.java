@@ -9,10 +9,10 @@ import java.util.TreeMap;
 
 public class RandomCollection {
 
-    //i took this class in this post
+    //i took this class in this stack overflow post
     //https://stackoverflow.com/questions/6409652/random-weighted-selection-in-java
 
-    private final NavigableMap<Double, CustomFishes> map = new TreeMap<Double, CustomFishes>();
+    private final NavigableMap<Double, CustomFish> map = new TreeMap<Double, CustomFish>();
     private final Random random;
     private double total = 0;
 
@@ -24,7 +24,7 @@ public class RandomCollection {
         this.random = random;
     }
 
-    public RandomCollection add(CustomFishes fish) {
+    public RandomCollection add(CustomFish fish) {
         int weight = fish.getChance();
         if (weight <= 0) return this;
         total += weight;
@@ -36,7 +36,7 @@ public class RandomCollection {
         return this.getrandomfromlist(map, total);
     }
 
-    private ItemStack getrandomfromlist(NavigableMap<Double, CustomFishes> map, Double total){
+    private ItemStack getrandomfromlist(NavigableMap<Double, CustomFish> map, Double total){
         ItemStack item = null;
         do{
             double value = random.nextDouble() * total;
@@ -51,13 +51,13 @@ public class RandomCollection {
 
     public ItemStack nextEdited(Integer commonchance, Integer rarechance, Integer legendarychance){
         int totaledited = 0;
-        NavigableMap<Double, CustomFishes> map2 = new TreeMap<>();
-        for(CustomFishes fish : map.values()){
-            if(fish.getRarity() == CustomFishes.FishRarity.Common){
+        NavigableMap<Double, CustomFish> map2 = new TreeMap<>();
+        for(CustomFish fish : map.values()){
+            if(fish.getRarity() == CustomFish.FishRarity.Common){
                 map2.put((double) (commonchance+fish.getChance()), fish);
                 totaledited += commonchance+fish.getChance();
             }
-            else if(fish.getRarity() == CustomFishes.FishRarity.Rare){
+            else if(fish.getRarity() == CustomFish.FishRarity.Rare){
                 map2.put((double) (rarechance+fish.getChance()), fish);
                 totaledited += rarechance+fish.getChance();
             }
@@ -65,7 +65,9 @@ public class RandomCollection {
                 map2.put((double) (legendarychance+fish.getChance()), fish);
             }
         }
-        Bukkit.getPlayer("RaiTaki").sendMessage(String.valueOf((double) totaledited));
-        return this.getrandomfromlist(map2, (double) totaledited);
+        ItemStack fish = this.getrandomfromlist(map2, (double) totaledited).clone();
+        int mass       = Methods.getRandomMass(Methods.getFishType(fish));
+        Methods.addMass(fish, mass);
+        return fish;
     }
 }

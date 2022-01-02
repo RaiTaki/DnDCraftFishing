@@ -3,17 +3,20 @@ package xyz.raitaki.DnDCraftFishing;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public final class Main extends JavaPlugin {
 
-    public static ArrayList<CustomFishes> fishList   = new ArrayList<>();
+    public static ArrayList<CustomFish> fishList   = new ArrayList<>();
     public static ArrayList<String> qualityList      = new ArrayList<>();
     public static ArrayList<CustomRod> rodList       = new ArrayList<>();
     public static RandomCollection rc                = new RandomCollection();
@@ -33,82 +36,15 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         instance = this;
-        registerCommands(new String[] { "raitest"}, new Commands() );
+        registerCommands(new String[] { "qualitycheck" }, new Commands() );
         Bukkit.getLogger().info(ChatColor.LIGHT_PURPLE+"DnDCraft Fishing plugin is on.");
         Bukkit.getPluginManager().registerEvents(new Events(), this);
-        createFishes();
+        saveDefaultConfig();
+        Methods.createFishes();
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-    }
-
-    private void createFishes(){
-        ArrayList<String> string = new ArrayList<>();
-        string.add("test1");
-        string.add("test2");
-        CustomFishes fishes = new CustomFishes();
-        fishes.setRarity(CustomFishes.FishRarity.Legendary);
-        fishes.setFish(new ItemStack(Material.SALMON));
-        fishes.setChance(5);
-        fishes.setCustommodeldata(0);
-        fishes.setLore(string);
-        fishes.setName("test1");
-        fishes.setWeights(12,5);
-        fishes.createItem();
-
-        ArrayList<String> string2 = new ArrayList<>();
-        string2.add("test1");
-        string2.add("test2");
-        CustomFishes fishes2 = new CustomFishes();
-        fishes2.setRarity(CustomFishes.FishRarity.Rare);
-        fishes2.setFish(new ItemStack(Material.SALMON));
-        fishes2.setChance(10);
-        fishes2.setCustommodeldata(0);
-        fishes2.setLore(string2);
-        fishes2.setName("test2");
-        fishes2.setWeights(12,5);
-        fishes2.createItem();
-
-        ArrayList<String> string3 = new ArrayList<>();
-        string3.add("test1");
-        string3.add("test2");
-        CustomFishes fishes3 = new CustomFishes();
-        fishes3.setRarity(CustomFishes.FishRarity.Common);
-        fishes3.setFish(new ItemStack(Material.SALMON));
-        fishes3.setChance(20);
-        fishes3.setCustommodeldata(0);
-        fishes3.setLore(string3);
-        fishes3.setName("test3");
-        fishes3.setWeights(12,5);
-        fishes3.createItem();
-
-        ArrayList<String> string4 = new ArrayList<>();
-        string4.add("test1");
-        string4.add("test2");
-        CustomFishes fishes4 = new CustomFishes();
-        fishes4.setRarity(CustomFishes.FishRarity.Common);
-        fishes4.setFish(new ItemStack(Material.SALMON));
-        fishes4.setChance(30);
-        fishes4.setCustommodeldata(0);
-        fishes4.setLore(string4);
-        fishes4.setName("test4");
-        fishes4.setWeights(12,5);
-        fishes4.createItem();
-
-        rc.add(fishes);
-        rc.add(fishes2);
-        rc.add(fishes3);
-        rc.add(fishes4);
-
-        fishList.add(fishes);
-        fishList.add(fishes2);
-        fishList.add(fishes3);
-        fishList.add(fishes4);
-
-        qualityList.add("quality1");
-        qualityList.add("quality2");
-        qualityList.add("quality3");
     }
 }

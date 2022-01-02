@@ -1,23 +1,41 @@
 package xyz.raitaki.DnDCraftFishing;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Events implements Listener {
+
+    //list of fishers
+    public static HashMap<Player, FishingMenu> fishinglist = new HashMap<>();
+
+
     @EventHandler
     public void CatchingFish(PlayerFishEvent event){
-        if(Methods.isFished(event.getState())){
-            event.getCaught().remove();
-            ItemStack fish = Main.rc.nextEdited(20,15,3).clone();
-            int mass       = Methods.getRandomMass(Methods.getFishType(fish));
-            Methods.addMass(fish, mass);
-            event.getPlayer().getInventory().addItem(fish);
+        if(event.getState() == PlayerFishEvent.State.BITE){
+            event.setCancelled(true);
+        }
+        if(event.getState() == PlayerFishEvent.State.FISHING && fishinglist.get(event.getPlayer()) == null){
+            FishingMenu fishingMenu = new FishingMenu();
+            Bukkit.getPluginManager().registerEvents(fishingMenu, Main.getInstance());
+            fishingMenu.setPlayer(event.getPlayer());
+            fishingMenu.start();
+            fishinglist.put(event.getPlayer(), fishingMenu);
+        }
+    }
+
+    @EventHandler
+    public void InventoryClickEvent(InventoryClickEvent event){
+        if(fishinglist.containsKey(event.getWhoClicked())){
+            fishinglist.get(event.getWhoClicked()).eventchecker(event);
         }
     }
 }

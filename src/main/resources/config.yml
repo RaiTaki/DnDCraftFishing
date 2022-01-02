@@ -1,0 +1,51 @@
+#You need to add types like in this doc: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+#You need to add "§" this symbol for colors.
+
+
+
+fishcount: 5
+fish1:
+  - '§eWhiting'    #name
+  - '§7Fish of the cold seas.'    #lore only 1 line
+  - 'Legendary'     #rarity
+  - 5               #chance
+  - 10              #min weight
+  - 15              #max weight
+  - SALMON          #item type
+  - 0
+fish2:
+  - '§dTurbot'    #name
+  - '§7A fish that reminds of a shield, perfect choice for warriors.'    #lore only 1 line
+  - 'Rare'          #rarity
+  - 10              #chance
+  - 5               #min weight
+  - 10              #max weight
+  - SALMON          #item type
+  - 0
+fish3:
+  - '§8Eel'    #name
+  - '§7A snake-looking fish, very exotic.'    #lore only 1 line
+  - 'Common'        #rarity
+  - 15              #chance
+  - 5               #min weight
+  - 10              #max weight
+  - COD             #item type
+  - 0
+fish4:
+  - '§8Whiting'    #name
+  - '§7A snake-looking fish, very exotic.'    #lore only 1 line
+  - 'Common'     #rarity
+  - 20               #chance
+  - 15              #min weight
+  - 25              #max weight
+  - TROPICAL_FISH #item type
+  - 0
+fish5:
+  - '§dTurbot'    #name
+  - '§7A fish that reminds of a shield, perfect choice for warriors.'    #lore only 1 line
+  - 'Rare'          #rarity
+  - 10              #chance
+  - 5               #min weight
+  - 10              #max weight
+  - SALMON          #item type
+  - 0

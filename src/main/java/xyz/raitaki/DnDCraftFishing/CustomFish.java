@@ -9,7 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
-public class CustomFishes {
+public class CustomFish {
 
     private ItemStack fish              = new ItemStack(Material.SALMON);
     private ItemMeta fishmeta           = fish.getItemMeta();
@@ -26,6 +26,7 @@ public class CustomFishes {
     }
 
     public void setName(String name){
+        this.name = name;
         this.fishmeta.displayName(Component.text(name));
     }
 
@@ -72,6 +73,10 @@ public class CustomFishes {
 
     public FishRarity getRarity(){
         return this.rarity;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public enum FishRarity{Common, Rare, Legendary}
