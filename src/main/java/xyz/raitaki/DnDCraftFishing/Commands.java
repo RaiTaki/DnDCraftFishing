@@ -14,6 +14,7 @@ public class Commands implements CommandExecutor {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (label.equalsIgnoreCase("qualitycheck")) {
+                if(p.getInventory().getItemInMainHand() == null) return false;
                 ItemStack item = p.getInventory().getItemInMainHand();
                 if(Methods.isFish(item)){
                     Methods.addRandomQuality(item);
